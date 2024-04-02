@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{inventory.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{inventory.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/inventories}" class="btn btn-secondary">[[#{inventory.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('inventory')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='inventory', field='inventoryId', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='inventory', field='quantity', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='inventory', field='lastUpdated', inputClass='js-datetimepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='inventory', field='item', type='select')}" />
+                <input type="submit" th:value="#{inventory.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

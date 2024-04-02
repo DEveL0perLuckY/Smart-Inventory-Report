@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{healthParameter.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{healthParameter.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/healthParameters}" class="btn btn-secondary">[[#{healthParameter.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('healthParameter')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='healthParameter', field='parameterId', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='healthParameter', field='parameterName', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='healthParameter', field='test', type='select')}" />
+                <input type="submit" th:value="#{healthParameter.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

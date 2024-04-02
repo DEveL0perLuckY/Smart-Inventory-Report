@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{machine.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{machine.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/machines/add}" class="btn btn-primary ms-2">[[#{machine.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${machines.empty}">[[#{machine.list.empty}]]</div>
+            <div th:if="${!machines.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{machine.machineId.label}]]</th>
+                            <th scope="col">[[#{machine.machineName.label}]]</th>
+                            <th scope="col">[[#{machine.test.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="machine : ${machines}">
+                            <td>[[${machine.machineId}]]</td>
+                            <td>[[${machine.machineName}]]</td>
+                            <td>[[${machine.test}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/machines/edit/{machineId}(machineId=${machine.machineId})}" class="btn btn-sm btn-secondary">[[#{machine.list.edit}]]</a>
+                                    <form th:action="@{/machines/delete/{machineId}(machineId=${machine.machineId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{machine.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

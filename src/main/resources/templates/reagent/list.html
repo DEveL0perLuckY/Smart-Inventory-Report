@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{reagent.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{reagent.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/reagents/add}" class="btn btn-primary ms-2">[[#{reagent.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${reagents.empty}">[[#{reagent.list.empty}]]</div>
+            <div th:if="${!reagents.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{reagent.reagentId.label}]]</th>
+                            <th scope="col">[[#{reagent.reagentName.label}]]</th>
+                            <th scope="col">[[#{reagent.usageType.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="reagent : ${reagents}">
+                            <td>[[${reagent.reagentId}]]</td>
+                            <td>[[${reagent.reagentName}]]</td>
+                            <td>[[${reagent.usageType}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/reagents/edit/{reagentId}(reagentId=${reagent.reagentId})}" class="btn btn-sm btn-secondary">[[#{reagent.list.edit}]]</a>
+                                    <form th:action="@{/reagents/delete/{reagentId}(reagentId=${reagent.reagentId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{reagent.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

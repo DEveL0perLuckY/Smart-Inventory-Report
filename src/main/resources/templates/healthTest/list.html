@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>[[#{healthTest.list.headline}]]</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="d-flex flex-wrap mb-4">
+            <h1 class="flex-grow-1">[[#{healthTest.list.headline}]]</h1>
+            <div>
+                <a th:href="@{/healthTests/add}" class="btn btn-primary ms-2">[[#{healthTest.list.createNew}]]</a>
+            </div>
+        </div>
+        <div th:if="${healthTests.empty}">[[#{healthTest.list.empty}]]</div>
+        <div th:if="${!healthTests.empty}" class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">[[#{healthTest.testId.label}]]</th>
+                        <th scope="col">[[#{healthTest.testName.label}]]</th>
+                        <th scope="col">[[#{healthTest.testType.label}]]</th>
+                        <th><!-- --></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="healthTest : ${healthTests}">
+                        <td>[[${healthTest.testId}]]</td>
+                        <td>[[${healthTest.testName}]]</td>
+                        <td>[[${healthTest.testType}]]</td>
+                        <td>
+                            <div class="float-end text-nowrap">
+                                <a th:href="@{/healthTests/edit/{testId}(testId=${healthTest.testId})}"
+                                    class="btn btn-sm btn-secondary">[[#{healthTest.list.edit}]]</a>
+                                <form th:action="@{/healthTests/delete/{testId}(testId=${healthTest.testId})}"
+                                    th:data-confirm-message="#{delete.confirm}" method="post"
+                                    class="js-submit-confirm d-inline">
+                                    <button type="submit"
+                                        class="btn btn-sm btn-secondary">[[#{healthTest.list.delete}]]</button>
+                                </form>
+                                <a th:href="@{/healthTests/downloadPdf/{testId}(testId=${healthTest.testId})}"
+                                    class="btn btn-sm btn-secondary">Download Report</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

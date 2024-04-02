@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>SmartReport</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h1 class="mb-4">Lab Technician</h1>
+        <p class="mb-5">Welcome! to Lab Technician</p>
+
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <img th:src="@{/images/img7.jpg}" alt="Background" class="img-fluid mb-4" width="8000" height="5000" />
+            </div>
+            <div class="col-md-4 align-self-center">
+                <div class="list-group">
+                    <a th:href="@{/testLabMappings}" class="list-group-item list-group-item-action">Manage Test Lab
+                        Mappings</a>
+                    <a th:href="@{/labFaults}" class="list-group-item list-group-item-action">Handle Lab Faults</a>
+                    <a th:href="@{/labProcesses}" class="list-group-item list-group-item-action">Manage Lab
+                        Processes</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

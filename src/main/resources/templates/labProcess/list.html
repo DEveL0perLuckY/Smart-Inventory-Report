@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{labProcess.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{labProcess.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/labProcesses/add}" class="btn btn-primary ms-2">[[#{labProcess.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${labProcesses.empty}">[[#{labProcess.list.empty}]]</div>
+            <div th:if="${!labProcesses.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{labProcess.processId.label}]]</th>
+                            <th scope="col">[[#{labProcess.processName.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="labProcess : ${labProcesses}">
+                            <td>[[${labProcess.processId}]]</td>
+                            <td>[[${labProcess.processName}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/labProcesses/edit/{processId}(processId=${labProcess.processId})}" class="btn btn-sm btn-secondary">[[#{labProcess.list.edit}]]</a>
+                                    <form th:action="@{/labProcesses/delete/{processId}(processId=${labProcess.processId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{labProcess.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

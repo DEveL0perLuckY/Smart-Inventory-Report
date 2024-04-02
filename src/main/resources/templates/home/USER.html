@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>SmartReport</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Account Creation Successful</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Your account has been created successfully!</p>
+                            <p>You are now waiting for admin authorization to access the system.</p>
+                            <p>Please wait patiently for admin approval.</p>
+                            <hr>
+                            <form action="/applyForRole" method="Get">
+                                <div class="form-group">
+                                    <label for="role">Select Role:</label>
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="ROLE_HEALTHCARE_PROFESSIONAL">Healthcare Professional</option>
+                                        <option value="ROLE_LAB_TECHNICIAN">Lab Technician</option>
+                                        <option value="ROLE_INVENTORY_MANAGER">Inventory Manager</option>
+                                    </select>
+                                </div>
+                                <Hr>
+                                <button type="submit" class="btn btn-primary">Apply for Role</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

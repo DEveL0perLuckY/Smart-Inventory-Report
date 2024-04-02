@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>SmartReport</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h1 class="mb-4">Inventory Manager</h1>
+        <p class="mb-5">Welcome to Inventory Manager!!</p>
+
+
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <img th:src="@{/images/manager.jpg}" alt="Background" class="img-fluid mb-4" width="8000"
+                    height="5000" />
+            </div>
+            <div class="col-md-4 align-self-center">
+                <div class="list-group">
+                    <a th:href="@{/healthTests}" class="list-group-item list-group-item-action">Manage Health Tests</a>
+                    <a th:href="@{/containers}" class="list-group-item list-group-item-action">Access Containers</a>
+                    <a th:href="@{/machines}" class="list-group-item list-group-item-action">View Machines</a>
+                    <a th:href="@{/healthParameters}" class="list-group-item list-group-item-action">Define Health
+                        Parameters</a>
+                    <a th:href="@{/reagents}" class="list-group-item list-group-item-action">Manage Reagents</a>
+                    <a th:href="@{/reagentActions}" class="list-group-item list-group-item-action">Handle Reagent
+                        Actions</a>
+                    <a th:href="@{/testLabMappings}" class="list-group-item list-group-item-action">Manage Test Lab
+                        Mappings</a>
+                    <a th:href="@{/labFaults}" class="list-group-item list-group-item-action">Handle Lab Faults</a>
+                    <a th:href="@{/inventories}" class="list-group-item list-group-item-action">Monitor Inventories</a>
+                    <a th:href="@{/labProcesses}" class="list-group-item list-group-item-action">Manage Lab
+                        Processes</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

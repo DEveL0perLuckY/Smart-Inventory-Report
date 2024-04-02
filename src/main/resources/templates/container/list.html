@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{container.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{container.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/containers/add}" class="btn btn-primary ms-2">[[#{container.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${containers.empty}">[[#{container.list.empty}]]</div>
+            <div th:if="${!containers.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{container.containerId.label}]]</th>
+                            <th scope="col">[[#{container.containerName.label}]]</th>
+                            <th scope="col">[[#{container.chemicals.label}]]</th>
+                            <th scope="col">[[#{container.transportMethod.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="container : ${containers}">
+                            <td>[[${container.containerId}]]</td>
+                            <td>[[${container.containerName}]]</td>
+                            <td>[[${container.chemicals}]]</td>
+                            <td>[[${container.transportMethod}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/containers/edit/{containerId}(containerId=${container.containerId})}" class="btn btn-sm btn-secondary">[[#{container.list.edit}]]</a>
+                                    <form th:action="@{/containers/delete/{containerId}(containerId=${container.containerId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{container.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

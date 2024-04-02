@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{inventory.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{inventory.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/inventories/add}" class="btn btn-primary ms-2">[[#{inventory.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${inventories.empty}">[[#{inventory.list.empty}]]</div>
+            <div th:if="${!inventories.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{inventory.inventoryId.label}]]</th>
+                            <th scope="col">[[#{inventory.quantity.label}]]</th>
+                            <th scope="col">[[#{inventory.lastUpdated.label}]]</th>
+                            <th scope="col">[[#{inventory.item.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="inventory : ${inventories}">
+                            <td>[[${inventory.inventoryId}]]</td>
+                            <td>[[${inventory.quantity}]]</td>
+                            <td>[[${inventory.lastUpdated}]]</td>
+                            <td>[[${inventory.item}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/inventories/edit/{inventoryId}(inventoryId=${inventory.inventoryId})}" class="btn btn-sm btn-secondary">[[#{inventory.list.edit}]]</a>
+                                    <form th:action="@{/inventories/delete/{inventoryId}(inventoryId=${inventory.inventoryId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{inventory.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
