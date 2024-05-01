@@ -9,6 +9,14 @@
 
 SmartReport is a Spring Boot application designed for generating reports and managing inventory. It provides a user-friendly interface for accessing and manipulating data related to reports and inventory items.
 
+## Screenshots
+![Screenshot](img1.png)
+![Screenshot](img2.png)
+![Screenshot](img3.png)
+![Screenshot](img4.png)
+![Screenshot](img5.png)
+![Screenshot](img6.png)
+
 ## Development
 
 Update your local database connection in `application.properties` or create your own `application-local.properties` file to override settings for development.
@@ -21,12 +29,9 @@ After starting the application, it is accessible under `localhost:8080`.
 
 The application can be built using the following command:
 
-
 Start your application with the following command - here with the profile `production`:
 
-
 If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as an environment variable when running the container.
-
 
 ## Further readings
 
